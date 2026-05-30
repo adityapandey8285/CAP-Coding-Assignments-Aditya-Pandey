@@ -1,0 +1,6 @@
+ID,event_ID,speaker_ID,topic,sessionTime,sessionDuration,roomNumber
+es1-1111-1111-1111-111111111111,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,AI Future,10:30:00,60,R1
+es2-2222-2222-2222-222222222222,bbbbbbbb-2222-2222-2222-bbbbbbbbbbbb,cccccccc-cccc-cccc-cccc-cccccccccccc,Node Best Practices,11:30:00,60,R2
+es3-3333-3333-3333-333333333333,dddddddd-4444-4444-4444-dddddddddddd,eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,DevOps Basics,10:00:00,60,R3
+es4-4444-4444-4444-444444444444,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Cloud Scaling,12:00:00,60,R4
+es5-5555-5555-5555-555555555555,cccccccc-3333-3333-3333-cccccccccccc,dddddddd-dddd-dddd-dddd-dddddddddddd,Startup Growth,13:00:00,60,R5

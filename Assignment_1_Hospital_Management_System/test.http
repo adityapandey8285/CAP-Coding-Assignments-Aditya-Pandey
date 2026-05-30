@@ -1,0 +1,52 @@
+###
+GET http://localhost:4004/odata/v4/hospital/Doctors
+
+###
+GET http://localhost:4004/odata/v4/hospital/Doctors?$filter=specialization eq 'Cardiologist'
+
+###
+GET http://localhost:4004/odata/v4/hospital/Appointments?$filter=appointmentDate eq '2024-06-01'
+
+###
+POST http://localhost:4004/odata/v4/hospital/Patients
+Content-Type: application/json
+
+{
+  "ID": "550e8400-e29b-41d4-a716-446655440001",
+  "firstName": "Aman",
+  "lastName": "Kumar",
+  "dateOfBirth": "2000-01-01",
+  "gender": "Male",
+  "bloodGroup": "O_POS",
+  "phone": "9999990000",
+  "email": "aman@mail.com",
+  "address": "Gurgaon",
+  "emergencyContact": "8888880000",
+  "registrationDate": "2024-06-01"
+}
+
+###
+POST http://localhost:4004/odata/v4/hospital/Appointments
+Content-Type: application/json
+
+{
+  "ID": "550e8400-e29b-41d4-a716-446655440002",
+  "patientId": "550e8400-e29b-41d4-a716-446655440001",
+  "doctorId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  "appointmentDate": "2024-06-02",
+  "appointmentTime": "11:00:00",
+  "reason": "Checkup",
+  "notes": "First visit",
+  "fee": 800
+}
+
+###
+GET http://localhost:4004/odata/v4/hospital/Patients?$filter=bloodGroup eq 'O_POS'
+
+###
+PATCH http://localhost:4004/odata/v4/hospital/Appointments('550e8400-e29b-41d4-a716-446655440002')
+Content-Type: application/json
+
+{
+  "status": "Completed"
+}

@@ -1,0 +1,6 @@
+ID,fromCity,toCity,distance,estimatedHours,tollCharges,isActive
+r1aaaaaa-1111-1111-1111-aaaaaaaaaaaa,Delhi,Gurgaon,30,1.5,100,true
+r2bbbbbb-2222-2222-2222-bbbbbbbbbbbb,Gurgaon,Noida,40,2.0,150,true
+r3cccccc-3333-3333-3333-cccccccccccc,Noida,Delhi,25,1.2,80,true
+r4dddddd-4444-4444-4444-dddddddddddd,Delhi,Faridabad,20,1.0,70,true
+r5eeeeee-5555-5555-5555-eeeeeeeeeeee,Noida,Gurgaon,35,1.8,120,true

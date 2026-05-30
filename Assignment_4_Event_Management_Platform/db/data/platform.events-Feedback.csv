@@ -1,0 +1,6 @@
+ID,event_ID,attendeeEmail,overallRating,contentRating,venueRating,speakerRating,comment,submittedAt
+f1-1111-1111-1111-111111111111,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,amit@email.com,5,5,4,5,Excellent event,2026-05-30T10:00:00Z
+f2-2222-2222-2222-222222222222,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,ravi@email.com,4,4,4,4,Very good conference,2026-05-30T10:10:00Z
+f3-3333-3333-3333-333333333333,bbbbbbbb-2222-2222-2222-bbbbbbbbbbbb,neha@email.com,5,5,5,5,Great workshop,2026-05-30T10:20:00Z
+f4-4444-4444-4444-444444444444,dddddddd-4444-4444-4444-dddddddddddd,sara@email.com,4,4,3,4,Good seminar,2026-05-30T10:30:00Z
+f5-5555-5555-5555-555555555555,cccccccc-3333-3333-3333-cccccccccccc,vikram@email.com,5,5,5,5,Awesome meetup,2026-05-30T10:40:00Z

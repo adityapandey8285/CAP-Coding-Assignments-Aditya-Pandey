@@ -1,0 +1,7 @@
+ID,event_ID,attendeeName,attendeeEmail,attendeePhone,company,ticketType,registrationDate,status,amountPaid,paymentId
+r1-1111-1111-1111-111111111111,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,Amit Kumar,amit@email.com,9990000001,TCS,General,2026-05-30,Confirmed,1000,pay001
+r2-2222-2222-2222-222222222222,aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,Ravi Singh,ravi@email.com,9990000002,Wipro,VIP,2026-05-30,Confirmed,2000,pay002
+r3-3333-3333-3333-333333333333,bbbbbbbb-2222-2222-2222-bbbbbbbbbbbb,Neha Jain,neha@email.com,9990000003,Infosys,Student,2026-05-30,Confirmed,500,pay003
+r4-4444-4444-4444-444444444444,bbbbbbbb-2222-2222-2222-bbbbbbbbbbbb,John Doe,john@email.com,9990000004,IBM,General,2026-05-30,Confirmed,500,pay004
+r5-5555-5555-5555-555555555555,dddddddd-4444-4444-4444-dddddddddddd,Sara Ali,sara@email.com,9990000005,Google,VIP,2026-05-30,Confirmed,800,pay005
+r6-6666-6666-6666-666666666666,cccccccc-3333-3333-3333-cccccccccccc,Vikram,vikram@email.com,9990000006,StartupX,Student,2026-05-30,Confirmed,300,pay006

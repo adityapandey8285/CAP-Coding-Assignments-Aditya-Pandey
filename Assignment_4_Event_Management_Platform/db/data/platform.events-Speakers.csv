@@ -1,0 +1,6 @@
+ID,name,email,phone,bio,company,designation,expertise,photoUrl,rating,totalTalks,isActive
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Rahul Sharma,rahul@email.com,9991111111,Backend expert,Google,Engineer,Node.js,https://img.com/1,5,20,true
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Anjali Verma,anjali@email.com,9992222222,Cloud architect,Amazon,Architect,AWS,https://img.com/2,4,25,true
+cccccccc-cccc-cccc-cccc-cccccccccccc,Rohit Mehta,rohit@email.com,9993333333,Frontend dev,Microsoft,Developer,React,https://img.com/3,5,18,true
+dddddddd-dddd-dddd-dddd-dddddddddddd,Neha Kapoor,neha@email.com,9994444444,Fullstack dev,Infosys,Lead,Java,https://img.com/4,4,30,true
+eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,Aman Singh,aman@email.com,9995555555,DevOps engineer,Netflix,Engineer,Docker,https://img.com/5,5,22,true

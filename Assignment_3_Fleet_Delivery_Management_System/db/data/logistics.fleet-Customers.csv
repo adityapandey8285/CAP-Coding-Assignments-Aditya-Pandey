@@ -1,0 +1,5 @@
+ID,name,company,phone,email,address,city,pincode,gstNumber,tier
+aaaaaaaa-1111-1111-1111-aaaaaaaaaaaa,Rahul Verma,ABC Pvt Ltd,8888880001,rahul@mail.com,Delhi Street 1,Delhi,110001,GST123,Regular
+bbbbbbbb-2222-2222-2222-bbbbbbbbbbbb,Aman Kumar,XYZ Ltd,8888880002,aman@mail.com,Gurgaon Road,Gurgaon,122001,GST456,Premium
+cccccccc-3333-3333-3333-cccccccccccc,Priya Sharma,TechCorp,8888880003,priya@mail.com,Noida Sector 62,Noida,201301,GST789,Enterprise
+dddddddd-4444-4444-4444-dddddddddddd,Ritu Gupta,LogiTrans,8888880004,ritu@mail.com,Faridabad Main,Faridabad,121001,GST321,Regular

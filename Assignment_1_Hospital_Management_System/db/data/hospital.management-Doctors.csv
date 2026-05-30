@@ -1,0 +1,7 @@
+ID,firstName,lastName,specialization,qualification,experience,fee,departmentId,phone,email,availableDays,isActive
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Raj,Sharma,Cardiologist,MD,10,800,11111111-1111-1111-1111-111111111111,9999999901,raj@mail.com,"Mon,Tue,Wed",true
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Amit,Mehta,Neurologist,MD,8,700,22222222-2222-2222-2222-222222222222,9999999902,amit@mail.com,"Mon,Fri",true
+cccccccc-cccc-cccc-cccc-cccccccccccc,Suresh,Singh,Orthopedic,MS,12,900,33333333-3333-3333-3333-333333333333,9999999903,suresh@mail.com,"Tue,Thu",true
+dddddddd-dddd-dddd-dddd-dddddddddddd,Neha,Gupta,Pediatrician,MD,6,600,44444444-4444-4444-4444-444444444444,9999999904,neha@mail.com,"Mon,Wed",true
+eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,Vikas,Yadav,Cardiologist,MD,9,850,11111111-1111-1111-1111-111111111111,9999999905,vikas@mail.com,"Fri,Sat",true
+ffffffff-ffff-ffff-ffff-ffffffffffff,Pooja,Verma,Neurologist,MD,7,750,22222222-2222-2222-2222-222222222222,9999999906,pooja@mail.com,"Mon,Thu",true

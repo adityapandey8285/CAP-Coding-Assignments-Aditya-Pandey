@@ -1,0 +1,9 @@
+ID,patientId,doctorId,appointmentDate,appointmentTime,status,reason,notes,fee
+a1, p1aaaaaa-1111-1111-1111-aaaaaaaaaaaa,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,2024-06-01,10:00:00,Scheduled,Chest Pain,NA,800
+a2, p2bbbbbb-2222-2222-2222-bbbbbbbbbbbb,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,2024-06-01,11:00:00,Scheduled,Headache,NA,700
+a3, p3cccccc-3333-3333-3333-cccccccccccc,cccccccc-cccc-cccc-cccc-cccccccccccc,2024-06-02,12:00:00,Scheduled,Fracture,NA,900
+a4, p4dddddd-4444-4444-4444-dddddddddddd,dddddddd-dddd-dddd-dddd-dddddddddddd,2024-06-02,13:00:00,Scheduled,Fever,NA,600
+a5, p5eeeeee-5555-5555-5555-eeeeeeeeeeee,eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,2024-06-03,14:00:00,Scheduled,Heart Check,NA,850
+a6, p1aaaaaa-1111-1111-1111-aaaaaaaaaaaa,ffffffff-ffff-ffff-ffff-ffffffffffff,2024-06-03,15:00:00,Scheduled,Consultation,NA,750
+a7, p2bbbbbb-2222-2222-2222-bbbbbbbbbbbb,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,2024-06-04,16:00:00,Scheduled,Follow-up,NA,800
+a8, p3cccccc-3333-3333-3333-cccccccccccc,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,2024-06-04,17:00:00,Scheduled,Migraine,NA,700

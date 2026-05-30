@@ -1,0 +1,6 @@
+ID,firstName,lastName,email,phone,departmentCode,designation,joinDate,salary,officeRoom
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Raj,Sharma,raj@mail.com,9999990001,CS,Assistant,2015-01-01,80000,A101
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Amit,Mehta,amit@mail.com,9999990002,IT,Associate,2014-02-01,90000,B201
+cccccccc-cccc-cccc-cccc-cccccccccccc,Suresh,Singh,suresh@mail.com,9999990003,ECE,Full,2012-03-01,100000,C301
+dddddddd-dddd-dddd-dddd-dddddddddddd,Neha,Verma,neha@mail.com,9999990004,CS,Assistant,2018-04-01,75000,A102
+eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,Vikas,Yadav,vikas@mail.com,9999990005,IT,Full,2010-05-01,110000,B202

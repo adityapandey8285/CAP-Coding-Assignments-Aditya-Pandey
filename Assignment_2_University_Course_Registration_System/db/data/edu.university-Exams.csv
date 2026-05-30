@@ -1,0 +1,5 @@
+ID,courseCode,examType,date,maxMarks,weightagePercent
+e1aaaaaa-1111-1111-1111-aaaaaaaaaaaa,CS101,Midterm,2024-03-01,50,30
+e2bbbbbb-2222-2222-2222-bbbbbbbbbbbb,IT101,Final,2024-04-01,100,50
+e3cccccc-3333-3333-3333-cccccccccccc,EC101,Quiz,2024-03-15,20,10
+e4dddddd-4444-4444-4444-dddddddddddd,CS201,Assignment,2024-03-20,30,10

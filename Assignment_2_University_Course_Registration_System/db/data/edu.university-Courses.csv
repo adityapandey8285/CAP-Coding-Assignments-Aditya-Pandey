@@ -1,0 +1,7 @@
+code,title,description,credits,maxStudents,currentEnrolled,semester,departmentCode,professorId,schedule,roomNumber,isActive
+CS101,Intro to CS,Basics,4,50,10,1,CS,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,MWF 10:00,A101,true
+CS201,Data Structures,Core CS,4,50,20,3,CS,dddddddd-dddd-dddd-dddd-dddddddddddd,MWF 11:00,A102,true
+IT101,Networking,Basics,3,40,15,1,IT,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,TTS 10:00,B201,true
+IT301,Cloud Computing,Advanced,4,45,18,5,IT,eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,TTS 12:00,B202,true
+EC101,Circuits,Basics,4,45,12,1,ECE,cccccccc-cccc-cccc-cccc-cccccccccccc,MWF 09:00,C301,true
+EC401,Embedded Systems,Advanced,4,40,16,7,ECE,cccccccc-cccc-cccc-cccc-cccccccccccc,MWF 02:00,C302,true

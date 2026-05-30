@@ -1,0 +1,2 @@
+ID,patientId,doctorId,appointmentId,diagnosis,prescription,testRecommended,recordDate
+m1,p1aaaaaa-1111-1111-1111-aaaaaaaaaaaa,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,a1,Hypertension,Medicine,BP Test,2024-06-01

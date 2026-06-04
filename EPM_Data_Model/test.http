@@ -1,0 +1,51 @@
+GET http://localhost:4004/admin/Products
+
+###
+
+GET http://localhost:4004/admin/Products?$expand=supplier,category
+
+###
+
+GET http://localhost:4004/admin/Customers
+
+###
+
+GET http://localhost:4004/admin/SalesOrders?$expand=customer,items
+
+###
+
+GET http://localhost:4004/admin/Products?$filter=stock gt 10
+
+###
+
+GET http://localhost:4004/admin/Products?$orderby=name
+
+###
+
+GET http://localhost:4004/reports/ProductCatalogView
+
+###
+
+GET http://localhost:4004/reports/OrderReportView
+
+###
+
+GET http://localhost:4004/reports/LowStockAlertView
+
+###
+
+POST http://localhost:4004/admin/SalesOrders
+Content-Type: application/json
+
+{
+  "orderNumber":"SO1005",
+  "orderDate":"2025-06-01",
+  "status":"OPEN",
+  "items":[
+    {
+      "quantity":2,
+      "unitPrice":500,
+      "netAmount":1000
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID
+p1111111-1111-1111-1111-111111111111,Dell Inspiron,Laptop,55000,INR,20,5,4.5,11111111-1111-1111-1111-111111111111,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+p2222222-2222-2222-2222-222222222222,HP Pavilion,Laptop,60000,INR,15,5,4.4,22222222-2222-2222-2222-222222222222,bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+p3333333-3333-3333-3333-333333333333,iPhone 15,Mobile,80000,INR,8,10,4.8,33333333-3333-3333-3333-333333333333,cccccccc-cccc-cccc-cccc-cccccccccccc
+p4444444-4444-4444-4444-444444444444,Samsung S24,Mobile,70000,INR,12,10,4.7,44444444-4444-4444-4444-444444444444,cccccccc-cccc-cccc-cccc-cccccccccccc
+p5555555-5555-5555-5555-555555555555,Logitech Mouse,Wireless Mouse,1200,INR,50,15,4.3,11111111-1111-1111-1111-111111111111,dddddddd-dddd-dddd-dddd-dddddddddddd
+p6666666-6666-6666-6666-666666666666,Mechanical Keyboard,Keyboard,3500,INR,30,10,4.4,22222222-2222-2222-2222-222222222222,dddddddd-dddd-dddd-dddd-dddddddddddd
+p7777777-7777-7777-7777-777777777777,HP Laser Printer,Printer,18000,INR,6,10,4.2,33333333-3333-3333-3333-333333333333,eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee
+p8888888-8888-8888-8888-888888888888,Canon Inkjet,Printer,12000,INR,5,8,4.1,44444444-4444-4444-4444-444444444444,eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee

@@ -1,0 +1,6 @@
+ID,name,description,parentCategory_ID
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Electronics,Electronic Items,
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Laptops,Laptop Category,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+cccccccc-cccc-cccc-cccc-cccccccccccc,Mobiles,Mobile Category,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+dddddddd-dddd-dddd-dddd-dddddddddddd,Accessories,Computer Accessories,
+eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,Printers,Printer Category,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa

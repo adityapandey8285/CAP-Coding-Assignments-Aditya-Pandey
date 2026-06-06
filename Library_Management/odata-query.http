@@ -1,0 +1,107 @@
+### Get all books with price greater than 500
+GET http://localhost:4004/library/Books?$filter=price gt 500
+
+### Get all books with available copies
+GET http://localhost:4004/library/Books?$filter=availableCopies gt 4
+
+### Get books published after 2000
+GET http://localhost:4004/library/Books?$filter=publishedDate gt 2000-01-01
+
+### Get books in English
+GET http://localhost:4004/library/Books?$filter=language eq 'English'
+
+### Get books with more than 300 pages
+GET http://localhost:4004/library/Books?$filter=pages gt 300
+
+### Get active members
+GET http://localhost:4004/library/Members?$filter=isActive eq true
+
+### Get overdue borrowings
+GET http://localhost:4004/library/Borrowings?$filter=status eq 'Overdue'
+
+### Get returned borrowings
+GET http://localhost:4004/library/Borrowings?$filter=status eq 'Returned'
+
+### Get books costing between 300 and 800
+GET http://localhost:4004/library/Books?$filter=price ge 300 and price le 800
+
+### Get active authors
+GET http://localhost:4004/library/Authors?$filter=isActive eq true
+
+### 2.1 Books with "SAP" in the title (case-sensitive!)
+GET http://localhost:4004/library/Books?$filter=contains(title,'CAP')
+
+### 2.2 Books with "sap" in the title (lowercase)
+GET http://localhost:4004/library/Books?$filter=contains(title,'cap')
+
+### 2.3 Case-insensitive search for "sap"
+GET http://localhost:4004/library/Books?$filter=contains(tolower(title),'cap')
+
+### 2.4 Authors whose first name starts with "R"
+GET http://localhost:4004/library/Authors?$filter=startswith(firstName,'R')
+
+### 2.5 Books with ISBN starting with "978"
+GET http://localhost:4004/library/Books?$filter=startswith(isbn,'978')
+
+### 3.1 Books costing less than 500 and available in stock
+GET http://localhost:4004/library/Books?$filter=price lt 500 and availableCopies gt 0
+
+### 3.2 Books in English OR Hindi
+GET http://localhost:4004/library/Books?$filter=language eq 'English' or language eq 'Hindi'
+
+### 3.3 Premium books (price > 300) and more than 200 pages
+GET http://localhost:4004/library/Books?$filter=price gt 300 and pages gt 200
+
+### 3.4 Books with "CAP" in title OR price above 300
+GET http://localhost:4004/library/Books?$filter=contains(title,'BTP') or price gt 300
+
+### 3.5 Available books that are in English or Odia
+GET http://localhost:4004/library/Books?$filter=availableCopies gt 0 and (language eq 'English' or language eq 'Odia')
+
+### 4.1 All books sorted by title A-Z
+GET http://localhost:4004/library/Books?$orderby=title
+
+### 4.2 Most expensive books first
+GET http://localhost:4004/library/Books?$orderby=price desc
+
+### 4.3 Top 3 most expensive books
+GET http://localhost:4004/library/Books?$orderby=price desc&$top=3
+
+### 4.4 Cheapest 2 books
+GET http://localhost:4004/library/Books?$orderby=price&$top=2
+
+### 4.5 Page 1 (2 items per page)
+GET http://localhost:4004/library/Books?$orderby=title&$top=2&$skip=0
+
+### 4.6 Page 2 (2 items per page)
+GET http://localhost:4004/library/Books?$orderby=title&$top=2&$skip=2
+
+### 4.7 Page 3 (2 items per page)
+GET http://localhost:4004/library/Books?$orderby=title&$top=2&$skip=4
+
+### 4.8 Get total count with first page
+GET http://localhost:4004/library/Books?$orderby=title&$top=2&$count=true
+
+### 5.1 Only book titles
+GET http://localhost:4004/library/Books?$select=title
+
+### 5.2 Title and price only
+GET http://localhost:4004/library/Books?$select=title,price
+
+### 5.3 Title, price, and pages — sorted by price
+GET http://localhost:4004/library/Books?$select=title,price,pages&$orderby=price
+
+### 5.4 Member names only
+GET http://localhost:4004/library/Members?$select=firstName,lastName
+
+### 5.5 Combine $select with $filter
+GET http://localhost:4004/library/Books?$select=title,price&$filter=price lt 500
+
+### 6.1 Top 3 cheapest books with available copies — show only title and price
+GET http://localhost:4004/library/Books?$filter=availableCopies gt 0&$orderby=price&$top=3&$select=title,price
+
+### 6.2 All books sorted by language then price desc, page 1 of 2 items, with count
+GET http://localhost:4004/library/Books?$orderby=language,price desc&$top=2&$skip=0&$count=true
+
+### 6.3 Books with "CAP" in title, price 300+, sorted by price desc, only title and price
+GET http://localhost:4004/library/Books?$filter=contains(title,'CAP') and price ge 300&$orderby=price desc&$sele 

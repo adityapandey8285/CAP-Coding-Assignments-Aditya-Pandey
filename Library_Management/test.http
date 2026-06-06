@@ -1,0 +1,80 @@
+### Get books WITH author details
+GET http://localhost:4004/library/Books?$expand=author
+
+### Get books WITH genre details
+GET http://localhost:4004/library/Books?$expand=genre
+
+### Get books with BOTH author and genre
+GET http://localhost:4004/library/Books?$expand=author,genre
+
+### Get an author WITH all their books
+GET http://localhost:4004/library/Authors?$expand=books
+
+### Get borrowings with book and member details
+GET http://localhost:4004/library/Borrowings?$expand=book,member
+
+### Get members with their borrowings AND the borrowed book
+GET http://localhost:4004/library/Members?$expand=borrowings($expand=book)
+
+### Filter books by a specific author
+GET http://localhost:4004/library/Books?$filter=author_ID eq 'a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa'
+
+### Available books
+GET http://localhost:4004/reports/AvailableBooks
+
+### Overdue borrowings
+GET http://localhost:4004/reports/OverdueBorrowings
+
+### Book pricing
+GET http://localhost:4004/reports/BookPricing
+
+### Member activity
+GET http://localhost:4004/reports/MemberActivity?$filter=isActive eq true
+
+### Without $expand
+GET http://localhost:4004/library/Books?$select=title,author
+
+### With $expand
+GET http://localhost:4004/library/Books?$select=ID,title&$expand=author($select=ID,firstName,lastName)
+
+### Cheapest books first
+GET http://localhost:4004/library/Books?$orderby=price
+
+### Most expensive books first
+GET http://localhost:4004/library/Books?$orderby=price desc
+
+### Highest edition books first
+GET http://localhost:4004/library/Books?$orderby=edition desc
+
+### Alphabetical by title
+GET http://localhost:4004/library/Books?$orderby=title
+
+### Published date newest to oldest
+GET http://localhost:4004/library/Books?$orderby=publishedDate desc
+
+### Sort by price descending
+GET http://localhost:4004/library/Books?$orderby=price desc
+
+### First 2 books
+GET http://localhost:4004/library/Books?$top=2
+
+### First 5 books sorted by price
+GET http://localhost:4004/library/Books?$orderby=price&$top=5
+
+### Page 1
+GET http://localhost:4004/library/Books?$top=3&$skip=0
+
+### Page 2
+GET http://localhost:4004/library/Books?$top=3&$skip=3
+
+### Page 3
+GET http://localhost:4004/library/Books?$top=3&$skip=6
+
+### Top 3 most expensive books
+GET http://localhost:4004/library/Books?$orderby=price desc&$top=3
+
+### Second page of results, 2 per page
+GET http://localhost:4004/library/Books?$orderby=title&$top=2&$skip=2
+
+### Navigation Query - Get author of a specific book
+GET http://localhost:4004/library/Books(1a2b3c4d-1111-1111-1111-111111111111)/author

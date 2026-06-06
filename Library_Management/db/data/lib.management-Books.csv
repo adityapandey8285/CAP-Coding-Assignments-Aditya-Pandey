@@ -1,0 +1,7 @@
+ID,title,isbn,pages,price,publishedDate,language,edition,totalCopies,availableCopies,summary,author_ID,genre_code
+1a2b3c4d-1111-1111-1111-111111111111,Clean Code,9780132350884,464,450.00,2008-08-01,English,1,5,3,A handbook of agile software craftsmanship,a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa,PROG
+5ed1c590-e7bc-4dcb-a1f3-220892265591,CAP BTP Bookk,9780132350883,500,700,2008-08-05,English,1,5,3,CAP BTP Programming Knowldge,a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa,SCI
+2a2b3c4d-2222-2222-2222-222222222222,The Pragmatic Programmer,9780135957059,352,550.00,2019-09-13,English,2,3,2,Journey to mastery,b2b2b2b2-bbbb-bbbb-bbbb-bbbbbbbbbbbb,PROG
+3a2b3c4d-3333-3333-3333-333333333333,Sapiens,9780062316097,443,400.00,2015-02-10,English,1,4,4,A brief history of humankind,c3c3c3c3-cccc-cccc-cccc-cccccccccccc,HIST
+4a2b3c4d-4444-4444-4444-444444444444,Atomic Habits,9780735211292,320,350.00,2018-10-16,English,1,6,5,Tiny changes remarkable results,d4d4d4d4-dddd-dddd-dddd-dddddddddddd,SELF
+5a2b3c4d-5555-5555-5555-555555555555,Foundation,9780553293357,255,300.00,1951-06-01,English,1,5,4,Classic science fiction novel,e5e5e5e5-eeee-eeee-eeee-eeeeeeeeeeee,SCI

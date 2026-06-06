@@ -1,0 +1,6 @@
+code,name,description,isActive
+PROG,Programming,Software development and coding books,true
+HIST,History,Historical and civilization books,true
+SELF,Self Help,Personal growth and productivity,true
+FICT,Fiction,Novels and fictional stories,true
+SCI,Science,Scientific discoveries and research,true

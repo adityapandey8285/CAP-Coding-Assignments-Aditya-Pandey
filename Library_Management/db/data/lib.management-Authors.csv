@@ -1,0 +1,6 @@
+ID,firstName,lastName,nationality,birthDate,biography,email,isActive
+a1a1a1a1-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Robert,Martin,USA,1952-12-05,Clean Code author and software consultant,unclebob@example.com,true
+b2b2b2b2-bbbb-bbbb-bbbb-bbbbbbbbbbbb,David,Thomas,USA,1956-01-01,Co-author of The Pragmatic Programmer,david.thomas@example.com,true
+c3c3c3c3-cccc-cccc-cccc-cccccccccccc,Yuval,Harari,Israel,1976-02-24,Historian and philosopher,yuval@example.com,true
+d4d4d4d4-dddd-dddd-dddd-dddddddddddd,James,Clear,USA,1986-01-22,Author of Atomic Habits,james.clear@example.com,true
+e5e5e5e5-eeee-eeee-eeee-eeeeeeeeeeee,Isaac,Asimov,Russia,1920-01-02,Famous science fiction author,asimov@example.com,true

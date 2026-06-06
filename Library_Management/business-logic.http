@@ -1,0 +1,40 @@
+## Business Scenario Quiz — Write OData Queries (16:45 - 17:00)
+
+### Instructions
+
+For each business scenario, write the COMPLETE OData URL. Assume:
+- Base URL: `http://localhost:4004`
+- Services: `/catalog` (Books, Authors), `/sales` (Products, Orders, Customers)
+- Time: 15 minutes for 10 scenarios
+
+---
+
+### Scenario 1: Product Search
+GET http://localhost:4004/sales/Products?$filter=contains(tolower(productName),'laptop')&$select=productName,price&$orderby=price&$top=5
+
+### Scenario 2: Order History
+GET http://localhost:4004/sales/Orders?$filter=customer_ID eq 'c123-abc' and orderDate gt 2025-06-01&$orderby=orderDate desc
+
+### Scenario 3: Inventory Alert
+GET http://localhost:4004/sales/Products?$filter=stock lt 10 and isActive eq true&$select=productName,stock&$expand=supplier
+
+### Scenario 4: Author Page
+GET http://localhost:4004/catalog/Authors?$filter=name eq 'J.K. Rowling'&$expand=books($select=title,price,rating;$orderby=rating desc)
+
+### Scenario 5: Sales Report
+GET http://localhost:4004/sales/Orders?$filter=status eq 'Delivered' and orderDate ge 2026-01-01 and orderDate lt 2026-02-01&$count=true
+
+### Scenario 6: Product Catalog (Paginated)
+GET http://localhost:4004/sales/Products?$orderby=productName&$select=productName,price,rating&$top=10&$skip=20&$count=true
+
+### Scenario 7: VIP Customers
+GET http://localhost:4004/sales/Customers?$filter=creditLimit gt 500000&$select=name,email,city&$orderby=creditLimit desc
+
+### Scenario 8: Book Recommendation
+GET http://localhost:4004/catalog/Books?$filter=price lt 15&$expand=author($select=name)&$orderby=rating desc&$top=3
+
+### Scenario 9: Order Detail
+GET http://localhost:4004/sales/Orders('ord-001-uuid')?$expand=customer($select=name),orderItems($expand=product($select=name))
+
+### Scenario 10: Multi-condition Search
+GET http://localhost:4004/catalog/Books?$filter=(genre eq 'Fantasy' or genre eq 'Science Fiction') and publishDate gt 2000-01-01 and rating ge 4.0&$select=title,genre,rating,publishDate&$orderby=genre,rating desc

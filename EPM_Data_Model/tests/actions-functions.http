@@ -1,0 +1,413 @@
+@base = http://localhost:4004/orders
+
+### ═══════════════════════════════════════
+### SETUP: Create test data
+### ═══════════════════════════════════════
+
+### Create a customer
+POST {{base}}/Customers
+Content-Type: application/json
+
+{
+  "name": "Test Customer",
+  "email": "test@example.com",
+  "city": "Mumbai",
+  "creditLimit": 500000
+}
+
+### Create an order
+POST {{base}}/Orders
+Content-Type: application/json
+
+{
+  "orderNumber": "SO-TEST-001",
+  "customer_ID": "c1111111-1111-1111-1111-111111111111",
+  "orderDate": "2026-06-02",
+  "totalAmount": 1500.00,
+  "taxAmount": 228.81,
+  "netAmount": 1271.19,
+  "currency_code": "INR",
+  "status": "New"
+}
+
+
+### ═══════════════════════════════════════
+### BOUND ACTIONS (on specific orders)
+### ═══════════════════════════════════════
+
+### Confirm the order
+POST {{base}}/Orders(1cafeabe-1f9b-42de-88d4-fba197308cfb)/OrderService.confirm
+Content-Type: application/json
+
+{}
+
+### Try to confirm again (should fail — already confirmed)
+POST {{base}}/Orders(ID='1cafeabe-1f9b-42de-88d4-fba197308cfb')/OrderService.confirm
+Content-Type: application/json
+
+{}
+
+### Ship the order
+POST {{base}}/Orders(1cafeabe-1f9b-42de-88d4-fba197308cfb)/OrderService.ship
+Content-Type: application/json
+
+{
+  "trackingNumber": "TRK-2026-001",
+  "carrier": "BlueDart"
+}
+
+### Deliver the order
+POST {{base}}/Orders(1cafeabe-1f9b-42de-88d4-fba197308cfb)/OrderService.deliver
+Content-Type: application/json
+
+{}
+
+### Try to cancel a delivered order (should fail)
+POST {{base}}/Orders(1cafeabe-1f9b-42de-88d4-fba197308cfb)/OrderService.cancel
+Content-Type: application/json
+
+{
+  "reason": "Changed my mind"
+}
+
+
+### ═══════════════════════════════════════
+### BOUND FUNCTIONS (read-only, on specific orders)
+### ═══════════════════════════════════════
+
+### Get order total (calculated)
+GET {{base}}/Orders(ID='so111111-1111-1111-1111-111111111111')/OrderService.getTotal()
+
+
+### ═══════════════════════════════════════
+### UNBOUND ACTIONS (service-level)
+### ═══════════════════════════════════════
+
+### Bulk confirm multiple orders
+POST {{base}}/bulkConfirm
+Content-Type: application/json
+
+{
+  "orderIds": ["order-uuid-1", "order-uuid-2", "order-uuid-3"]
+}
+
+
+### ═══════════════════════════════════════
+### UNBOUND FUNCTIONS (service-level, GET request!)
+### ═══════════════════════════════════════
+
+### Get order statistics for June 2026
+GET {{base}}/getOrderStats(year=2026,month=6)
+
+### Get top 3 customers by spending
+GET {{base}}/getTopCustomers(limit=3)
+###
+GET http://localhost:4004/orders/Orders(ID='1cafeabe-1f9b-42de-88d4-fba197308cfb')?$select=ID,orderNumber,status
+
+###
+GET http://localhost:4004/orders/OrderItems
+
+###
+GET http://localhost:4004/orders/OrderItems?$filter=order_ID eq '1cafeabe-1f9b-42de-88d4-fba197308cfb'
+###
+POST {{base}}/OrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "1cafeabe-1f9b-42de-88d4-fba197308cfb",
+  "product_ID": "p3333333-3333-3333-3333-333333333333",
+  "quantity": 2,
+  "unitPrice": 800,
+  "netAmount": 1600
+}
+
+###
+GET {{base}}/OrderItems?$filter=order_ID eq '1cafeabe-1f9b-42de-88d4-fba197308cfb'
+
+@base = http://localhost:4004/purchasing
+
+### ═══════════════════════════════════════════════
+### STEP 1: View Dashboard (unbound function)
+### ═══════════════════════════════════════════════
+GET {{base}}/getPurchasingDashboard()
+
+
+### ═══════════════════════════════════════════════
+### STEP 2: Create a Purchase Order
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-2026-001",
+  "supplier_ID": "11111111-1111-1111-1111-111111111111",
+  "orderDate": "2026-06-02",
+  "status": "Draft",
+  "currency_code": "INR"
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 3: Add items to PO
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "po111111-1111-1111-1111-111111111111",
+  "product_ID": "p1111111-1111-1111-1111-111111111111",
+  "quantity": 10,
+  "unitPrice": 50000
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 4: Get PO Summary (bound function)
+### ═══════════════════════════════════════════════
+GET {{base}}/PurchaseOrders(ID='po111111-1111-1111-1111-111111111111')/PurchasingService.getSummary()
+
+
+### ═══════════════════════════════════════════════
+### STEP 5: Submit PO
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='po111111-1111-1111-1111-111111111111')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 6: Try Submit Again (Should Fail)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='po111111-1111-1111-1111-111111111111')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 7: Approve PO
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='po111111-1111-1111-1111-111111111111')/PurchasingService.approve
+Content-Type: application/json
+
+{
+  "comment": "Approved. Budget available for Q2 restock."
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 8: Receive Goods
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='po111111-1111-1111-1111-111111111111')/PurchasingService.receive
+Content-Type: application/json
+
+{
+  "receivedQty": 10,
+  "notes": "All items received in good condition"
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 9: Verify Product Stock
+### ═══════════════════════════════════════════════
+GET {{base}}/Products(ID='p1111111-1111-1111-1111-111111111111')?$select=name,stock
+
+
+@base = http://localhost:4004/purchasing
+
+### ═══════════════════════════════════════════════
+### STEP 1: View Dashboard (unbound function)
+### ═══════════════════════════════════════════════
+GET {{base}}/getPurchasingDashboard()
+
+
+### ═══════════════════════════════════════════════
+### STEP 2: Create a Purchase Order (standard CRUD)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-2026-001",
+  "supplier_ID": "11111111-1111-1111-1111-111111111111",
+  "orderDate": "2026-06-02",
+  "status": "Draft",
+  "currency_code": "INR"
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 3: Add items to PO (standard CRUD)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "465d61a1-5907-4485-8fe5-5dbe431c8ba2",
+  "product_ID": "p1111111-1111-1111-1111-111111111111",
+  "quantity": 100,
+  "unitPrice": 45.00
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 4: Get PO Summary (bound function)
+### ═══════════════════════════════════════════════
+GET {{base}}/PurchaseOrders(ID='465d61a1-5907-4485-8fe5-5dbe431c8ba2')/PurchasingService.getSummary()
+
+
+### ═══════════════════════════════════════════════
+### STEP 5: Submit PO for approval (bound action)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='465d61a1-5907-4485-8fe5-5dbe431c8ba2')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 6: Try to submit again (should fail)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='465d61a1-5907-4485-8fe5-5dbe431c8ba2')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 7: Approve the PO (bound action)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='465d61a1-5907-4485-8fe5-5dbe431c8ba2')/PurchasingService.approve
+Content-Type: application/json
+
+{
+  "comment": "Approved. Budget available for Q2 restock."
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 8: Receive goods (bound action)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='465d61a1-5907-4485-8fe5-5dbe431c8ba2')/PurchasingService.receive
+Content-Type: application/json
+
+{
+  "receivedQty": 100,
+  "notes": "All items received in good condition"
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 9: Verify stock was updated
+### ═══════════════════════════════════════════════
+GET {{base}}/Products(ID='p1111111-1111-1111-1111-111111111111')?$select=name,stock
+
+
+### ═══════════════════════════════════════════════
+### BONUS: Reject Workflow
+### ═══════════════════════════════════════════════
+
+### Create another PO
+POST {{base}}/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-2026-002",
+  "supplier_ID": "22222222-2222-2222-2222-222222222222",
+  "orderDate": "2026-06-02",
+  "status": "Draft",
+  "currency_code": "INR"
+}
+
+@base = http://localhost:4004/purchasing
+
+### ═══════════════════════════════════════════════
+### STEP 2: Create a Purchase Order
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders
+Content-Type: application/json
+
+{
+  "poNumber": "PO-2026-002",
+  "supplier_ID": "22222222-2222-2222-2222-222222222222",
+  "orderDate": "2026-06-02",
+  "status": "Draft",
+  "currency_code": "INR"
+}
+
+### Response ID:
+### b077df8f-9a2d-4ed4-96c2-2fdd2cb02214
+
+
+### ═══════════════════════════════════════════════
+### STEP 3: Add Item to PO
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "48b52242-c9bd-46ca-bd7d-2eca208c48ce",
+  "product_ID": "p1111111-1111-1111-1111-111111111111",
+  "quantity": 100,
+  "unitPrice": 45
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 4: Get PO Summary
+### ═══════════════════════════════════════════════
+GET {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')/PurchasingService.getSummary()
+
+
+### ═══════════════════════════════════════════════
+### STEP 5: Submit PO 
+### ══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 6: Submit Again (Should Fail)
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')/PurchasingService.submit
+Content-Type: application/json
+
+{}
+
+
+### ═══════════════════════════════════════════════
+### STEP 7: Approve PO
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')/PurchasingService.approve
+Content-Type: application/json
+
+{
+  "comment": "Approved. Budget available for Q2 restock."
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 8: Receive Goods
+### ═══════════════════════════════════════════════
+POST {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')/PurchasingService.receive
+Content-Type: application/json
+
+{
+  "receivedQty": 100,
+  "notes": "All items received in good condition"
+}
+
+
+### ═══════════════════════════════════════════════
+### STEP 9: Verify Product Stock
+### ═══════════════════════════════════════════════
+GET {{base}}/Products(ID='p1111111-1111-1111-1111-111111111111')?$select=name,stock
+
+
+### ═══════════════════════════════════════════════
+### STEP 10: Final Status Check
+### ═══════════════════════════════════════════════
+GET {{base}}/PurchaseOrders(ID='48b52242-c9bd-46ca-bd7d-2eca208c48ce')

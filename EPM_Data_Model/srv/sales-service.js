@@ -114,5 +114,107 @@ module.exports = function () {
       req.reject(409, 'Cannot delete a delivered order');
     }
   });
+  // BOUND ACTION: confirm
+  this.on('confirm', 'SalesOrders', async (req) => {
+    const orderId = req.params[0]?.ID || req.params[0];
+
+    const order = await SELECT.one.from('com.epm.SalesOrders')
+      .where({ ID: orderId });
+
+    if (!order) {
+      req.reject(404, 'Order not found');
+    }
+
+    if (order.status !== 'New') {
+      req.reject(400, `Only New orders can be confirmed. Current status: ${order.status}`);
+    }
+
+    await UPDATE('com.epm.SalesOrders')
+      .set({ status: 'Confirmed' })
+      .where({ ID: orderId });
+
+    return {
+      status: 'Confirmed',
+      message: `Order ${order.orderNumber} confirmed successfully`
+    };
+  });
+
+  // BOUND ACTION: cancel
+  this.on('cancel', 'SalesOrders', async (req) => {
+    const orderId = req.params[0]?.ID || req.params[0];
+    const { reason } = req.data;
+
+    const order = await SELECT.one.from('com.epm.SalesOrders')
+      .where({ ID: orderId });
+
+    if (!order) {
+      req.reject(404, 'Order not found');
+    }
+
+    if (!reason || reason.trim() === '') {
+      req.reject(400, 'Cancellation reason is required');
+    }
+
+    if (order.status === 'Delivered') {
+      req.reject(400, 'Cannot cancel a delivered order');
+    }
+
+    if (order.status === 'Cancelled') {
+      req.reject(400, 'Order is already cancelled');
+    }
+
+    await UPDATE('com.epm.SalesOrders')
+      .set({ status: 'Cancelled' })
+      .where({ ID: orderId });
+
+    const refundAmount =
+      order.status === 'Confirmed' || order.status === 'Shipped'
+        ? order.totalAmount
+        : 0;
+
+    return {
+      status: 'Cancelled',
+      message: `Order ${order.orderNumber} cancelled. Reason: ${reason}`,
+      refundAmount: refundAmount
+    };
+  });
+
+  // BOUND ACTION: ship
+  this.on('ship', 'SalesOrders', async (req) => {
+    const orderId = req.params[0]?.ID || req.params[0];
+    const { trackingNumber, carrier } = req.data;
+
+    const order = await SELECT.one.from('com.epm.SalesOrders')
+      .where({ ID: orderId });
+
+    if (!order) {
+      req.reject(404, 'Order not found');
+    }
+
+    if (order.status !== 'Confirmed') {
+      req.reject(400, `Cannot ship order in "${order.status}" status. Order must be "Confirmed" first.`);
+    }
+
+    if (!trackingNumber) {
+      req.reject(400, 'Tracking number is required');
+    }
+
+    if (!carrier) {
+      req.reject(400, 'Carrier name is required');
+    }
+
+    await UPDATE('com.epm.SalesOrders')
+      .set({ status: 'Shipped' })
+      .where({ ID: orderId });
+
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 5);
+
+    return {
+      status: 'Shipped',
+      message: `Order ${order.orderNumber} shipped via ${carrier}. Tracking: ${trackingNumber}`,
+      estimatedDelivery: deliveryDate.toISOString().split('T')[0]
+    };
+  });
 
 };

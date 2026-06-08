@@ -155,3 +155,39 @@ Content-Type: application/json
 {
   
 }
+
+### Ping Health
+POST http://localhost:4004/analytics/PingHealth
+
+### Generate Report
+POST http://localhost:4004/analytics/GenerateReport
+Content-Type: application/json
+
+{
+  "reportType": "Sales",
+  "startDate": "2025-01-01",
+  "endDate": "2025-12-31"
+}
+
+### Confirm a specific order
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='so111111-1111-1111-1111-111111111111')/SalesService.confirm
+Content-Type: application/json
+
+{}
+
+### Cancel a specific order
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='so111111-1111-1111-1111-111111111111')/SalesService.cancel
+Content-Type: application/json
+
+{
+  "reason": "Customer changed their mind"
+}
+
+### Ship an order
+POST http://localhost:4004/odata/v4/sales/SalesOrders(ID='so111111-1111-1111-1111-111111111111')/SalesService.ship
+Content-Type: application/json
+
+{
+  "trackingNumber": "TRK-2026-ABC123",
+  "carrier": "FedEx"
+}

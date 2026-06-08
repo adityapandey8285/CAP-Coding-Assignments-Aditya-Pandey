@@ -1,14 +1,14 @@
 {
   "name": "epm-complete",
   "version": "1.0.0",
-  "private": true,
   "dependencies": {
-    "@sap/cds": "^9",
-    "@cap-js/sqlite": "^2"
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4"
   },
   "scripts": {
-    "start": "cds-serve",
-    "watch": "cds watch"
+    "start": "cds-serve"
   },
   "cds": {
     "requires": {
@@ -19,5 +19,6 @@
         }
       }
     }
-  }
+  },
+  "private": true
 }

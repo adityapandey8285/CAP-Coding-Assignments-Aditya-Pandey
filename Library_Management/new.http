@@ -1,0 +1,67 @@
+@sales = http://localhost:4004/sales
+
+### Test 1: Create order without customer (should fail)
+POST {{sales}}/SalesOrders
+Content-Type: application/json
+
+{
+  "orderDate": "2026-06-15",
+  "items": [
+    { "product_ID": "p1000001-...", "quantity": 2, "unitPrice": 50.00 }
+  ]
+}
+
+### Test 2: Create order with past date (should fail)
+POST {{sales}}/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "c1000001-...",
+  "orderDate": "2020-01-01",
+  "items": [
+    { "product_ID": "p1000001-...", "quantity": 2, "unitPrice": 50.00 }
+  ]
+}
+
+### Test 3: Create order with invalid item (quantity 0)
+POST {{sales}}/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "c1000001-...",
+  "orderDate": "2026-06-15",
+  "items": [
+    { "product_ID": "p1000001-...", "quantity": 0, "unitPrice": 50.00 }
+  ]
+}
+
+### Test 4: Create valid order (should succeed + auto-calculate totals!)
+POST {{sales}}/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "c1000001-...",
+  "orderNumber": "SO-201",
+  "orderDate": "2026-06-15",
+  "currency_code": "USD",
+  "items": [
+    { "product_ID": "p1000001-...", "quantity": 2, "unitPrice": 499.99 },
+    { "product_ID": "p1000002-...", "quantity": 1, "unitPrice": 29.99 }
+  ]
+}
+
+### Test 5: Try invalid status transition (New → Delivered should fail)
+PATCH {{sales}}/SalesOrders(ORDER-ID-FROM-TEST-4)
+Content-Type: application/json
+
+{
+  "status": "Delivered"
+}
+
+### Test 6: Valid status transition (New → Confirmed)
+PATCH {{sales}}/SalesOrders(ORDER-ID-FROM-TEST-4)
+Content-Type: application/json
+
+{
+  "status": "Confirmed"
+}

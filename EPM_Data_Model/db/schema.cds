@@ -67,22 +67,25 @@ entity SalesOrderItems : cuid {
 }
 
 entity PurchaseOrders : cuid, managed {
-  poNumber    : String(30);
-  supplier    : Association to Suppliers;
-  orderDate   : Date;
-  totalAmount : Decimal(12,2);
-  taxAmount   : Decimal(12,2);
-  netAmount   : Decimal(12,2);
-  currency    : Currency;
-  status      : String(20);
+  poNumber     : String(30);
+  supplier     : Association to Suppliers;
+  orderDate    : Date;
+  expectedDate : Date;
+  priority     : String(20);
+  totalAmount  : Decimal(12,2);
+  taxAmount    : Decimal(12,2);
+  netAmount    : Decimal(12,2);
+  currency     : Currency;
+  status       : String(20);
 
-  items       : Composition of many PurchaseOrderItems
-                  on items.order = $self;
+  items : Composition of many PurchaseOrderItems
+            on items.order = $self;
 }
 
 entity PurchaseOrderItems : cuid {
-  order     : Association to PurchaseOrders;
-  product   : Association to Products;
-  quantity  : Integer;
-  unitPrice : Decimal(10,2);
+  order      : Association to PurchaseOrders;
+  product    : Association to Products;
+  quantity   : Integer;
+  unitPrice  : Decimal(10,2);
+  totalPrice : Decimal(12,2);
 }

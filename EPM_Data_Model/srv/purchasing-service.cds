@@ -1,47 +1,61 @@
 using { com.epm as db } from '../db/schema';
 
-service PurchasingService @(path:'/purchasing') {
+service PurchasingService @(path: '/purchasing') {
 
-  entity PurchaseOrders as projection on db.PurchaseOrders
-    actions {
+ @odata.draft.enabled
+entity PurchaseOrders as projection on db.PurchaseOrders {
+  *,
+  
+  supplier,
+  currency,
 
-      // Bound Actions
-      action submit() returns {
-        status  : String;
-        message : String;
-      };
+  virtual statusCriticality : Integer,
+  virtual progressValue     : Integer,
 
-      action approve(comment : String(500)) returns {
-        status     : String;
-        message    : String;
-        approvedAt : Timestamp;
-      };
+  virtual submitHidden      : Boolean,
+  virtual approveHidden     : Boolean,
+  virtual rejectHidden      : Boolean,
+  virtual poFieldControl    : Integer,
 
-      action reject(reason : String(500)) returns {
-        status  : String;
-        message : String;
-      };
+  items
+} actions {
+  action submit() returns {
+    status  : String;
+    message : String;
+  };
 
-      action receive(
-        receivedQty : Integer,
-        notes       : String(500)
-      ) returns {
-        status  : String;
-        message : String;
-      };
+  action approve(comment : String(500)) returns {
+    status     : String;
+    message    : String;
+    approvedAt : DateTime;
+  };
 
-      // Bound Function
-      function getSummary() returns {
-        poNumber    : String;
-        supplier    : String;
-        itemCount   : Integer;
-        totalAmount : Decimal(12,2);
-        status      : String;
-        daysOpen    : Integer;
-      };
-    };
+  action reject(reason : String(500)) returns {
+    status  : String;
+    message : String;
+  };
 
-  entity PurchaseOrderItems as projection on db.PurchaseOrderItems;
+  action receive(
+    receivedQty : Integer,
+    notes       : String(500)
+  ) returns {
+    status  : String;
+    message : String;
+  };
+
+  function getSummary() returns {
+    poNumber    : String;
+    supplier    : String;
+    itemCount   : Integer;
+    totalAmount : Decimal;
+    status      : String;
+    daysOpen    : Integer;
+  };
+};
+entity PurchaseOrderItems as projection on db.PurchaseOrderItems {
+  *,
+  product
+};
 
   @readonly
   entity Suppliers as projection on db.Suppliers;
@@ -49,21 +63,19 @@ service PurchasingService @(path:'/purchasing') {
   @readonly
   entity Products as projection on db.Products;
 
-  // Unbound Function
   function getPurchasingDashboard() returns {
     totalPOs        : Integer;
     draftCount      : Integer;
     pendingApproval : Integer;
     approvedCount   : Integer;
-    totalSpend      : Decimal(12,2);
+    totalSpend      : Decimal;
   };
 
-  // Events
   event POSubmitted {
     poId         : UUID;
     poNumber     : String;
     supplierName : String;
-    totalAmount  : Decimal(12,2);
+    totalAmount  : Decimal;
     submittedBy  : String;
   }
 
@@ -74,11 +86,12 @@ service PurchasingService @(path:'/purchasing') {
     comment    : String;
   }
 
-  event PORejected {
+  event POrejected {
     poId       : UUID;
     poNumber   : String;
     rejectedBy : String;
     reason     : String;
   }
-
 }
+
+using from '../app/purchase/annotations';

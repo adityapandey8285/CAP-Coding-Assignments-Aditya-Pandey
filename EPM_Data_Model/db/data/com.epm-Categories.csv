@@ -1,6 +1,16 @@
 ID,name,description,parentCategory_ID
-aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Electronics,Electronic items,
-bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Office Supplies,Office stationery and supplies,
-cccccccc-cccc-cccc-cccc-cccccccccccc,Hardware,Computer hardware,
-dddddddd-dddd-dddd-dddd-dddddddddddd,Laptops,Laptop products,aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee,Accessories,Computer accessories,cccccccc-cccc-cccc-cccc-cccccccccccc
+66928425-8fc2-4da1-8bda-fad7009f0d6f,name-6692842,description-6692842,66928425-8fc2-4da1-8bda-fad7009f0d6f
+17325814-e752-4e8a-ac10-43585ee15097,name-17325814,description-17325814,17325814-e752-4e8a-ac10-43585ee15097
+17325815-6330-4af5-98a6-d29c5412624e,name-17325815,description-17325815,17325815-6330-4af5-98a6-d29c5412624e
+17325816-9f06-495c-811b-37c455278952,name-17325816,description-17325816,17325816-9f06-495c-811b-37c455278952
+17325817-728b-4f4b-8532-1716ae52dacf,name-17325817,description-17325817,17325817-728b-4f4b-8532-1716ae52dacf
+17325818-e4f7-4144-adf2-cb5e2b777ceb,name-17325818,description-17325818,17325818-e4f7-4144-adf2-cb5e2b777ceb
+17325819-5513-47da-b06a-254fffcfe16a,name-17325819,description-17325819,17325819-5513-47da-b06a-254fffcfe16a
+17325820-d62e-4453-b611-2924feec5d21,name-17325820,description-17325820,17325820-d62e-4453-b611-2924feec5d21
+17325821-006a-412a-abe3-4528cb292263,name-17325821,description-17325821,17325821-006a-412a-abe3-4528cb292263
+17325822-3fbe-4b09-933b-5340bc953324,name-17325822,description-17325822,17325822-3fbe-4b09-933b-5340bc953324
+17325823-2664-4028-bfed-3ba7d9d2bec5,name-17325823,description-17325823,17325823-2664-4028-bfed-3ba7d9d2bec5
+17325824-649f-4143-bd25-c847ba3bac23,name-17325824,description-17325824,17325824-649f-4143-bd25-c847ba3bac23
+17325825-6e6d-4c49-b0ac-9dd2c7608a14,name-17325825,description-17325825,17325825-6e6d-4c49-b0ac-9dd2c7608a14
+17325826-d973-4bda-a6db-358322b2cde9,name-17325826,description-17325826,17325826-d973-4bda-a6db-358322b2cde9
+17325827-0c41-4142-a302-157409eb159c,name-17325827,description-17325827,17325827-0c41-4142-a302-157409eb159c

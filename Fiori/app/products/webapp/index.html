@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Manage Products</title>
+
+  <style>
+    html, body, #content {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+
+  <script id="sap-ui-bootstrap"
+    src="https://ui5.sap.com/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-resourceroots='{"products": "./"}'
+    data-sap-ui-compatVersion="edge"
+    data-sap-ui-async="true"
+    data-sap-ui-frameOptions="allow">
+  </script>
+
+  <script>
+    sap.ui.require(["sap/ui/core/ComponentContainer"], function (ComponentContainer) {
+      new ComponentContainer({
+        name: "products",
+        height: "100%",
+        async: true,
+        settings: {
+          id: "products"
+        }
+      }).placeAt("content");
+    });
+  </script>
+</head>
+
+<body class="sapUiBody">
+  <div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+@base = http://localhost:4004/procurement
+
+### ==========================================
+### 1. CREATE SUPPLIER
+### ==========================================
+
+POST {{base}}/Suppliers
+Content-Type: application/json
+
+{
+  "supplierName": "Global Parts Ltd",
+  "contactPerson": "John Smith",
+  "email": "john@globalparts.com",
+  "phone": "+44-20-1234",
+  "city": "London"
+}
+
+### Copy Supplier ID from response
+GET {{base}}/Suppliers
+
+
+### ==========================================
+### 2. CREATE PRODUCT
+### Replace SUPPLIER_UUID
+### ==========================================
+
+POST {{base}}/Products
+Content-Type: application/json
+
+{
+  "productName": "Widget Pro",
+  "description": "Premium widget",
+  "unitPrice": 25.00,
+  "stock": 5,
+  "minStock": 20,
+  "unit": "EA",
+  "currency_code": "USD",
+  "supplier_ID": "5b175635-6299-4629-b3ab-6c0d357e94df"
+}
+
+### Copy Product ID from response
+GET {{base}}/Products
+
+
+### ==========================================
+### 3. CREATE PURCHASE ORDER
+### Replace SUPPLIER_UUID
+### ==========================================
+
+POST {{base}}/PurchaseOrders
+Content-Type: application/json
+
+{
+  "supplier_ID": "5b175635-6299-4629-b3ab-6c0d357e94df",
+  "requiredDate": "2026-12-31",
+  "priority": "High",
+  "currency_code": "USD",
+  "notes": "Urgent restock needed"
+}
+
+### Copy PO ID from response
+GET {{base}}/PurchaseOrders
+
+
+### ==========================================
+### 4. ADD PO ITEM
+### ==========================================
+
+POST {{base}}/PurchaseOrderItems
+Content-Type: application/json
+
+{
+  "po_ID": "1a67d1c0-10aa-4a32-a825-e97eaa0271dc",
+  "product_ID": "a9d4b200-2ba6-4834-92bf-57f6c28726e6",
+  "quantity": 100,
+  "unitPrice": 18.50,
+  "currency_code": "USD"
+}
+
+
+### ==========================================
+### 5. GET SUMMARY
+### ==========================================
+
+GET {{base}}/PurchaseOrders(1a67d1c0-10aa-4a32-a825-e97eaa0271dc)/ProcurementService.getSummary()
+
+
+### ==========================================
+### 6. SUBMIT PO
+### ==========================================
+
+POST {{base}}/PurchaseOrders(1a67d1c0-10aa-4a32-a825-e97eaa0271dc)/ProcurementService.submit
+Content-Type: application/json
+
+{}
+
+
+### ==========================================
+### 7. APPROVE PO
+### ==========================================
+
+POST {{base}}/PurchaseOrders(1a67d1c0-10aa-4a32-a825-e97eaa0271dc)/ProcurementService.approve
+Content-Type: application/json
+
+{
+  "comment": "Good price approved"
+}
+
+
+### ==========================================
+### 8. MARK ORDERED
+### ==========================================
+
+POST {{base}}/PurchaseOrders(1a67d1c0-10aa-4a32-a825-e97eaa0271dc)/ProcurementService.markOrdered
+Content-Type: application/json
+
+{
+  "referenceNumber": "SUP-REF-2026-001"
+}
+
+
+### ==========================================
+### 9. RECEIVE GOODS
+### ==========================================
+
+POST {{base}}/PurchaseOrders(bc5c7d62-1f25-49be-ab29-9d284b3ef256)/ProcurementService.receiveGoods
+Content-Type: application/json
+
+{
+  "notes": "All items received in good condition"
+}
+
+
+### ==========================================
+### 10. VERIFY STOCK
+### ==========================================
+
+GET {{base}}/Products(a9d4b200-2ba6-4834-92bf-57f6c28726e6)?$select=productName,stock
+
+
+### ==========================================
+### 11. DASHBOARD
+### ==========================================
+
+GET {{base}}/getDashboard()
+
+
+### ==========================================
+### 12. LOW STOCK PRODUCTS
+### ==========================================
+
+GET {{base}}/getLowStockProducts(threshold=5)

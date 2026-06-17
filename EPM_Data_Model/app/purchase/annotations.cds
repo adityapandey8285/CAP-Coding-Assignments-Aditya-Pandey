@@ -2,14 +2,11 @@ using { PurchasingService } from '../../srv/purchasing-service';
 
 annotate PurchasingService.PurchaseOrders with @UI: {
 
-  SelectionFields: [
-    poNumber,
-    status,
-    supplier,
-    priority,
-    orderDate,
-    expectedDate
-  ],
+ SelectionFields: [
+  poNumber,
+  status,
+  supplier
+],
 
   LineItem: [
     { Value: poNumber, Label: 'PO Number' },
@@ -78,7 +75,7 @@ annotate PurchasingService.PurchaseOrders with @UI: {
       { Value: priority, Label: 'Priority' },
       { Value: orderDate, Label: 'Order Date' },
       { Value: expectedDate, Label: 'Expected Date' },
-      { Value: currency, Label: 'Currency' },
+     { $Type: 'UI.DataField', Value: currency_code, Label: 'Currency' },
       { Value: status, Label: 'Status', Criticality: statusCriticality },
       { Value: totalAmount, Label: 'Total Amount' },
       { Value: taxAmount, Label: 'Tax Amount' },
@@ -114,18 +111,10 @@ annotate PurchasingService.PurchaseOrders with @UI: {
 };
 
 annotate PurchasingService.PurchaseOrders with {
-  poNumber     @Common.Label : 'PO Number'     @Common.FieldControl : poFieldControl;
-  supplier_ID @Common.FieldControl : poFieldControl;
-  priority     @Common.Label : 'Priority'      @Common.FieldControl : poFieldControl;
-  orderDate    @Common.Label : 'Order Date'    @Common.FieldControl : poFieldControl;
-  expectedDate @Common.Label : 'Expected Date' @Common.FieldControl : poFieldControl;
-  currency     @Common.FieldControl : poFieldControl;
-
-  status        @Common.Label : 'Status';
-  totalAmount   @Common.Label : 'Total Amount';
-  taxAmount     @Common.Label : 'Tax Amount';
-  netAmount     @Common.Label : 'Net Amount';
-  progressValue @Common.Label : 'Progress';
+ poNumber     @title : 'PO Number'     @Common.Label : 'PO Number'     @Common.FieldControl : poFieldControl;
+ priority     @title : 'Priority'      @Common.Label : 'Priority'      @Common.FieldControl : poFieldControl;
+ orderDate    @title : 'Order Date'    @Common.Label : 'Order Date'    @Common.FieldControl : poFieldControl;
+ expectedDate @title : 'Expected Date' @Common.Label : 'Expected Date' @Common.FieldControl : poFieldControl;
 
   supplier @(
     Common.Label : 'Supplier',
@@ -155,13 +144,31 @@ annotate PurchasingService.PurchaseOrders with {
     }
   );
 
-  currency @(
-    Common.Label : 'Currency',
-    Common.Text : currency.code,
-    Common.TextArrangement : #TextOnly
-  );
+ currency_code @(
+  Common.Label : 'Currency',
+  Common.Text : currency.name,
+  Common.TextArrangement : #TextOnly,
+  Common.ValueList : {
+    Label : 'Currencies',
+    CollectionPath : 'Currencies',
+    Parameters : [
+      {
+        $Type : 'Common.ValueListParameterInOut',
+        LocalDataProperty : currency_code,
+        ValueListProperty : 'code'
+      },
+      {
+        $Type : 'Common.ValueListParameterDisplayOnly',
+        ValueListProperty : 'name'
+      },
+      {
+        $Type : 'Common.ValueListParameterDisplayOnly',
+        ValueListProperty : 'symbol'
+      }
+    ]
+  }
+);
 };
-
 annotate PurchasingService.PurchaseOrderItems with @UI: {
 
   LineItem: [
@@ -193,7 +200,7 @@ annotate PurchasingService.PurchaseOrderItems with @UI: {
 
   FieldGroup#ItemDetail: {
   Data: [
-    { $Type: 'UI.DataField', Value: product , Label: 'Product' },
+    { $Type: 'UI.DataField', Value: product_ID, Label: 'Product' },
     { $Type: 'UI.DataField', Value: quantity, Label: 'Quantity' },
     { $Type: 'UI.DataField', Value: unitPrice, Label: 'Unit Price' },
     { $Type: 'UI.DataField', Value: totalPrice, Label: 'Total Price', ![@Common.FieldControl]: #ReadOnly }
@@ -232,11 +239,34 @@ annotate PurchasingService.PurchaseOrderItems with {
     }
   );
 
-  product @(
-    Common.Label : 'Product',
-    Common.Text : product.name,
-    Common.TextArrangement : #TextOnly
-  );
+ product @(
+  Common.Label : 'Product',
+  Common.Text : product.name,
+  Common.TextArrangement : #TextOnly,
+  Common.ValueList : {
+    Label : 'Products',
+    CollectionPath : 'Products',
+    Parameters : [
+      {
+        $Type : 'Common.ValueListParameterInOut',
+        LocalDataProperty : product_ID,
+        ValueListProperty : 'ID'
+      },
+      {
+        $Type : 'Common.ValueListParameterDisplayOnly',
+        ValueListProperty : 'name'
+      },
+      {
+        $Type : 'Common.ValueListParameterDisplayOnly',
+        ValueListProperty : 'price'
+      },
+      {
+        $Type : 'Common.ValueListParameterDisplayOnly',
+        ValueListProperty : 'stock'
+      }
+    ]
+  }
+);
 
   quantity   @Common.Label : 'Quantity';
   unitPrice  @Common.Label : 'Unit Price';
@@ -324,8 +354,8 @@ annotate PurchasingService.Suppliers with {
 
 annotate PurchasingService.PurchaseOrderItems with @(
   Common.SideEffects #TotalPriceSideEffect : {
-    SourceProperties : [ quantity, unitPrice ],
-    TargetProperties : [ totalPrice ]
+    SourceProperties : [ 'quantity', 'unitPrice' ],
+    TargetProperties : [ 'totalPrice' ]
   }
 );
 
@@ -335,7 +365,7 @@ annotate PurchasingService.PurchaseOrderItems with {
 
 annotate PurchasingService.PurchaseOrders with @(
   Common.SideEffects #TotalRefresh : {
-    SourceEntities : [ items ],
-    TargetProperties : [ totalAmount, taxAmount, netAmount ]
+    SourceEntities : [ 'items' ],
+    TargetProperties : [ 'totalAmount', 'taxAmount', 'netAmount' ]
   }
 );

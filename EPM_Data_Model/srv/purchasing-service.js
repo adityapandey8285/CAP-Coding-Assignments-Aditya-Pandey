@@ -61,20 +61,25 @@ module.exports = function () {
     }
   };
 
+  this.before('CREATE', 'PurchaseOrders', req => {
+  req.data.createdBy = req.user.id;
+});
+
   this.after('READ', 'PurchaseOrders', (data) => {
     const rows = Array.isArray(data) ? data : [data];
     rows.forEach(setUIFields);
   });
 
-  this.after('READ', 'PurchaseOrderItems', (data) => {
+ this.after('READ', 'PurchaseOrderItems', (data) => {
   const rows = Array.isArray(data) ? data : [data];
 
   rows.forEach(item => {
     if (!item) return;
 
-    if (!item.totalPrice && item.quantity && item.unitPrice) {
-      item.totalPrice = +(Number(item.quantity) * Number(item.unitPrice)).toFixed(2);
-    }
+    const quantity = Number(String(item.quantity || 0).replace(/,/g, ''));
+    const unitPrice = Number(String(item.unitPrice || 0).replace(/,/g, ''));
+
+    item.totalPrice = +(quantity * unitPrice).toFixed(2);
   });
 });
 

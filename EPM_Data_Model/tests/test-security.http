@@ -1,0 +1,20 @@
+### Viewer - should READ
+GET http://localhost:4004/purchasing/PurchaseOrders
+Authorization: Basic dmlld2VyOnZpZXdlcg==
+
+### Viewer - should FAIL create
+POST http://localhost:4004/purchasing/PurchaseOrders
+Authorization: Basic dmlld2VyOnZpZXdlcg==
+Content-Type: application/json
+
+{
+  "poNumber": "PO-VIEWER-001"
+}
+
+### Manager - should READ
+GET http://localhost:4004/purchasing/PurchaseOrders
+Authorization: Basic bWFuYWdlcjptYW5hZ2Vy
+
+### Admin - should access Suppliers
+GET http://localhost:4004/purchasing/Suppliers
+Authorization: Basic YWRtaW46YWRtaW4=

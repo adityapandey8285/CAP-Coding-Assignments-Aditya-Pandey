@@ -1,0 +1,83 @@
+### Check Departments
+GET http://localhost:4004/hr/Departments
+
+
+### Check Employees
+GET http://localhost:4004/hr/Employees
+
+
+### Check Projects
+GET http://localhost:4004/hr/Projects
+
+
+### Check Skills
+GET http://localhost:4004/hr/Skills
+
+
+### Check Assignments
+GET http://localhost:4004/hr/Assignments
+
+
+### Check EmployeeSkills
+GET http://localhost:4004/hr/EmployeeSkills
+
+### Create Department
+POST http://localhost:4004/hr/Departments
+Content-Type: application/json
+
+{
+  "deptName": "IT Department",
+  "description": "Handles software and systems",
+  "budget": 500000,
+  "currency_code": "INR",
+  "location": "Bhubaneswar"
+}
+
+### Create Employee
+POST http://localhost:4004/hr/Employees
+Content-Type: application/json
+
+{
+  "firstName": "Prajnashree",
+  "lastName": "Pradhan",
+  "email": "prajna@example.com",
+  "phone": "9876543210",
+  "hireDate": "2026-06-04",
+  "salary": 35000,
+  "currency_code": "INR",
+  "jobTitle": "SAP CAP Developer",
+  "isActive": true,
+  "country_code": "IN",
+  "department_ID": "36ff2b19-f8d9-4087-89eb-d289e5ba7839"
+}
+
+### Create Project
+POST http://localhost:4004/hr/Projects
+Content-Type: application/json
+
+{
+  "projectName": "HR Management System",
+  "description": "CAP based HR project",
+  "startDate": "2026-06-04",
+  "endDate": "2026-07-04",
+  "budget": 200000,
+  "currency_code": "INR",
+  "status": "Active",
+  "manager_ID":"01351ab7-3250-4ba7-8649-2a0205fb9648"
+}
+
+### Create Assignment
+POST http://localhost:4004/hr/Assignments
+Content-Type: application/json
+
+{
+  "role": "Developer",
+  "allocation": 80,
+  "startDate": "2026-06-04",
+  "endDate": "2026-07-04",
+  "employee_ID": "ac74730b-715c-4336-992b-100a1179334d",
+  "project_ID": "2d9ff4cb-7ff6-4e20-ae1e-ceaae20b00a6"
+  
+}
+### Employee with Department and Assignments
+GET http://localhost:4004/hr/Employees?$expand=department,assignments

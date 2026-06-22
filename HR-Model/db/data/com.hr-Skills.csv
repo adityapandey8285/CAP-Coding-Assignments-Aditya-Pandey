@@ -1,0 +1,11 @@
+ID,skillName,category,description,createdAt,createdBy,modifiedAt,modifiedBy
+22221088-4cf1-4165-ae58-3415fcbaf87a,skillName-22221088,Soft,description-22221088,2009-01-02T00:00:00.000Z,createdBy.d89wg@example.net,2011-09-06T00:00:00.000Z,modifiedBy.d89wg@example.net
+29978403-cfbe-476d-a570-1b28bbd2b1fe,skillName-29978403,Technical,description-29978403,2002-05-02T00:00:00.000Z,createdBy.hujhf@example.net,2005-04-22T00:00:00.000Z,modifiedBy.hujhf@example.com
+29978404-4f74-49f8-9876-1e5549579635,skillName-29978404,Soft,description-29978404,2019-05-22T00:00:00.000Z,createdBy.hujhg@example.org,2004-12-09T00:00:00.000Z,modifiedBy.hujhg@example.com
+29978405-4e50-4c91-be8a-c86f34eb344e,skillName-29978405,Domain,description-29978405,2011-10-22T00:00:00.000Z,createdBy.hujhh@example.org,2008-08-16T00:00:00.000Z,modifiedBy.hujhh@example.net
+29978406-2fdd-4875-8bd3-d739802c007f,skillName-29978406,Domain,description-29978406,2013-02-08T00:00:00.000Z,createdBy.hujhi@example.org,2001-12-27T00:00:00.000Z,modifiedBy.hujhi@example.com
+29978407-e073-43d1-a3d3-d376e832d9aa,skillName-29978407,Management,description-29978407,2013-06-20T00:00:00.000Z,createdBy.hujhj@example.org,2007-10-29T00:00:00.000Z,modifiedBy.hujhj@example.org
+29978408-4829-4cc0-a0e6-3be72573aaf6,skillName-29978408,Technical,description-29978408,2016-07-07T00:00:00.000Z,createdBy.hujhk@example.org,2004-01-11T00:00:00.000Z,modifiedBy.hujhk@example.net
+29978409-7be0-40ff-a75c-176b9e96af72,skillName-29978409,Management,description-29978409,2010-06-21T00:00:00.000Z,createdBy.hujhl@example.org,2003-08-08T00:00:00.000Z,modifiedBy.hujhl@example.org
+29978410-32d5-429a-b12a-c2bb37c47a72,skillName-29978410,Soft,description-29978410,2000-01-03T00:00:00.000Z,createdBy.hujhm@example.net,2012-10-20T00:00:00.000Z,modifiedBy.hujhm@example.com
+29978411-db29-47e7-8308-b0ecece5e878,skillName-29978411,Management,description-29978411,2002-07-20T00:00:00.000Z,createdBy.hujhn@example.org,2008-03-28T00:00:00.000Z,modifiedBy.hujhn@example.net

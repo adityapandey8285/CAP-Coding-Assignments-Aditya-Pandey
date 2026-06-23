@@ -16,8 +16,12 @@
     "start": "cds-serve",
     "watch-purchase": "cds watch --open purchase/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
-  "workspaces": ["app/*"],
-  "sapux": ["app/purchase"],
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/purchase"
+  ],
   "cds": {
     "requires": {
       "db": {
@@ -37,19 +41,27 @@
           "users": {
             "alice": {
               "password": "alice",
-              "roles": ["PurchaseManager"]
+              "roles": [
+                "PurchaseManager"
+              ]
             },
             "bob": {
               "password": "bob",
-              "roles": ["PurchaseManager"]
+              "roles": [
+                "PurchaseManager"
+              ]
             },
             "carol": {
               "password": "carol",
-              "roles": ["Viewer"]
+              "roles": [
+                "Viewer"
+              ]
             },
             "dave": {
               "password": "dave",
-              "roles": ["Administrator"]
+              "roles": [
+                "Administrator"
+              ]
             }
           }
         }

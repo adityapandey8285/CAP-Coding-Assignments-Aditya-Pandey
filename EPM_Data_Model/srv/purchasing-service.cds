@@ -8,7 +8,7 @@ service PurchasingService
   entity PurchaseOrders @(restrict: [
     { grant: 'READ', to: 'Viewer', where: 'status = ''Approved'' or status = ''Received''' },
     { grant: ['READ', 'CREATE', 'UPDATE'], to: 'PurchaseManager', where: 'createdBy = $user' },
-    { grant: 'READ', to: 'PurchaseManager', where: 'status = ''Submitted''' },
+    { grant: 'READ', to: 'PurchaseManager', where: 'status = ''Pending''' },
     { grant: '*', to: 'Administrator' }
   ]) as projection on db.PurchaseOrders {
     *,

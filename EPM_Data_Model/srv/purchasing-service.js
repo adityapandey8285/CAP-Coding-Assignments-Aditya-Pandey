@@ -2,6 +2,16 @@ const cds = require('@sap/cds');
 
 module.exports = function () {
 
+  this.before('*', (req) => {
+    console.log("========== AUTH ==========");
+    console.log("USER:", req.user.id);
+    console.log("ROLES:", req.user.roles);
+    console.log("PurchaseManager:", req.user.is("PurchaseManager"));
+    console.log("Administrator:", req.user.is("Administrator"));
+    console.log("Viewer:", req.user.is("Viewer"));
+    console.log("==========================");
+  });
+
   const setUIFields = (po) => {
     if (!po) return;
 
@@ -162,10 +172,13 @@ this.before(['CREATE', 'UPDATE'], 'PurchaseOrderItems', async (req) => {
   }
 
  this.after(['CREATE', 'UPDATE'], 'PurchaseOrderItems', async (data, req) => {
-  const orderId = req.data.order_ID || data?.order_ID;
 
-  if (orderId) {
-    await recalculatePO(orderId);
+  const item = await SELECT.one
+    .from('com.epm.PurchaseOrderItems')
+    .where({ ID: data.ID });
+
+  if (item?.order_ID) {
+    await recalculatePO(item.order_ID);
   }
 });
 

@@ -29,7 +29,24 @@
 					"odataVersion": "4.0"
 				}
 			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"managePurchaseOrders": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "PurchaseOrders",
+					"action": "manage",
+					"title": "Manage Purchase Orders"
+				}
+			}
 		}
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "epm-complete"
 	},
 	"sap.ui": {
 		"technology": "UI5",

@@ -39,7 +39,7 @@
         }
       },
       "auth": {
-        "kind": "dummy",
+        "kind": "xsuaa",
         "[development]": {
           "kind": "mocked",
           "user": "alice",

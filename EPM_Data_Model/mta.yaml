@@ -85,6 +85,48 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: epm-complete-destinations
+  type: com.sap.application.content
+  requires:
+    - name: epm-complete-auth
+      parameters:
+        service-key:
+          name: epm-complete-auth-key
+    - name: epm-complete-html5-repo-host
+      parameters:
+        service-key:
+          name: epm-complete-html5-repo-host-key
+    - name: srv-api
+    - name: epm-complete-destination-service
+      parameters:
+        content-target: true
+  build-parameters:
+    no-source: true
+  parameters:
+    content:
+      instance:
+        existing_destinations_policy: update
+        destinations:
+          - Name: epm-complete-html5-repository
+            ServiceInstanceName: epm-complete-html5-repo-host
+            ServiceKeyName: epm-complete-html5-repo-host-key
+            sap.cloud.service: epm-complete
+
+          - Name: epm-complete-auth
+            Authentication: OAuth2UserTokenExchange
+            ServiceInstanceName: epm-complete-auth
+            ServiceKeyName: epm-complete-auth-key
+            sap.cloud.service: epm-complete
+
+          - Name: epm-complete-api
+            Authentication: OAuth2UserTokenExchange
+            HTML5.DynamicDestination: true
+            TokenServiceInstanceName: epm-complete-auth
+            TokenServiceKeyName: epm-complete-auth-key
+            URL: ~{srv-api/srv-url}
+            WebIDEEnabled: true
+            WebIDEUsage: odata_gen
+            sap.cloud.service: epm-complete
 resources:
 - name: epm-complete-auth
   type: org.cloudfoundry.managed-service
@@ -122,17 +164,17 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      HTML5Runtime_enabled: true
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-      version: 1.0.0
+     HTML5Runtime_enabled: true
+     version: 1.0.0
+     init_data:
+    instance:
+      existing_destinations_policy: update
+      destinations:
+        - Name: ui5
+          URL: https://ui5.sap.com
+          Authentication: NoAuthentication
+          ProxyType: Internet
+          Type: HTTP
     service: destination
     service-name: epm-complete-destination-service
     service-plan: lite

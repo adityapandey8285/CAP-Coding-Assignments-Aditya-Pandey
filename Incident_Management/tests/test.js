@@ -1,8 +1,13 @@
-const cds = require('@sap/cds/lib')
-const { default: axios } = require('axios')
-const { GET, POST, DELETE, PATCH, expect } = cds.test(__dirname + '../../')
+const cds = require('@sap/cds')
 
-axios.defaults.auth = { username: 'alice' }
+const test = cds.test(__dirname + '/..', '--with-mocks')
+
+const { GET, POST, DELETE, PATCH, expect } = test
+
+test.defaults.auth = {
+  username: 'alice',
+  password: ''
+}
 
 jest.setTimeout(11111)
 
@@ -66,18 +71,21 @@ describe('Draft Choreography APIs', () => {
       )
       expect(status).to.equal(201)
     })
+
     it(`Should Close the Incident-${draftId}`, async () => {
       const { status } = await PATCH(`/odata/v4/processor/Incidents(ID=${incidentId},IsActiveEntity=false)`, {
         status_code: 'C'
       })
       expect(status).to.equal(200)
     })
+
     it('+ Activate the draft & check Status code as C using custom logic', async () => {
       const response = await POST(
         `/odata/v4/processor/Incidents(ID=${incidentId},IsActiveEntity=false)/ProcessorService.draftActivate`
       )
       expect(response.status).to.eql(200)
     })
+
     it('+ Test the incident status to be closed', async () => {
       const {
         status,
@@ -86,6 +94,7 @@ describe('Draft Choreography APIs', () => {
       expect(status).to.eql(200)
       expect(status_code).to.eql('C')
     })
+
     describe('should fail to re-open closed incident', () => {
       it(`Should Open Closed Incident-${draftId}`, async () => {
         const { status } = await POST(
@@ -96,15 +105,17 @@ describe('Draft Choreography APIs', () => {
         )
         expect(status).to.equal(201)
       })
+
       it(`Should re-open the Incident-${draftId} but fail`, async () => {
         const { status } = await PATCH(`/odata/v4/processor/Incidents(ID=${incidentId},IsActiveEntity=false)`, {
           status_code: 'N'
         })
         expect(status).to.equal(200)
       })
-      it(' `Should fail to activate draft trying to re-open the incidentt', async () => {
+
+      it('Should fail to activate draft trying to re-open the incident', async () => {
         try {
-          const response = await POST(
+          await POST(
             `/odata/v4/processor/Incidents(ID=${incidentId},IsActiveEntity=false)/ProcessorService.draftActivate`
           )
         } catch (error) {
@@ -114,10 +125,12 @@ describe('Draft Choreography APIs', () => {
       })
     })
   })
+
   it('- Delete the Draft', async () => {
     const response = await DELETE(`/odata/v4/processor/Incidents(ID=${draftId},IsActiveEntity=false)`)
     expect(response.status).to.eql(204)
   })
+
   it('- Delete the Incident', async () => {
     const response = await DELETE(`/odata/v4/processor/Incidents(ID=${draftId},IsActiveEntity=true)`)
     expect(response.status).to.eql(204)
